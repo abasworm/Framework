@@ -6,12 +6,18 @@ if (!defined('BASEPATH'))
 class template {
 
     public $ci;
+    protected $asset_css = array();
+    protected $asset_js = array();
+    protected $__css ='';
+    protected $__js ='';
+    
 
     public function __construct() {
         $this->ci = & get_instance();
+        $this->ci->load->helpers(array('url','form'));
     }
 
-    public function load($tpl_view, $body_view = null, $data = null) {
+    public function load_view($tpl_view, $body_view = null, $data = null) {
         if (!is_null($body_view)) {
             if (file_exists(APPPATH . 'views/' . $tpl_view . '/' . $body_view)) {
                 $body_view_path = $tpl_view . '/' . $body_view;
@@ -35,8 +41,37 @@ class template {
                 $data->body = $body;
             }
         }
+        $data['__javascript'] = $this->get_js();
+        $data['__css'] = $this->get_css();
         $this->ci->load->view('template/' . $tpl_view, $data);
     }
 
-}
+    public function load_css($filename,$filepath=NULL) {
+        $filepath = is_null($filepath) ? $filepath = '': $filepath = $filepath.'/';
+        $this->asset_css[] = $filepath.$filename;
+    }
 
+    public function load_js($filename,$filepath=NULL) {
+        $filepath = is_null($filepath) ? $filepath = '': $filepath = $filepath.'/';
+        $this->asset_js[] = $filepath.$filename;
+    }
+
+    public function get_js($name=null) {
+        if (is_null($name)){
+            foreach($this->asset_js as $x=>$data){
+                $this->__js .= '<SCRIPT src="'.base_url().'assets/js/'.$data.'" type="text/javascript"></SCRIPT>';
+            }
+        }
+        return $this->__js;
+    }
+    
+    public function get_css($name=null) {
+        if (is_null($name)){
+            foreach($this->asset_css as $x=>$data){
+                $this->__css .= '<link href="'.base_url().'assets/css/'.$data.'" type="text/css" rel="stylesheet">';
+            }
+        }
+        return $this->__css;
+    }
+
+}

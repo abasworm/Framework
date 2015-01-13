@@ -3,7 +3,7 @@
 
     <head>
         <title><?php echo $title; ?></title>
-        <?php echo $style;?>
+        <?php echo $__css;?>
     </head>
 
     <body>
@@ -12,12 +12,12 @@
 
             </div>
         </nav>
-        <div class="wrapper">
+        
 
             <?php echo $body; ?>
 
-        </div>
-        <?php echo $javascript;?>
+        
+        <?php echo $__javascript;?>
     </body>
 
 </html>

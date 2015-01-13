@@ -12,14 +12,15 @@ class users extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library(array('template','form_validation'));
-        $this->load->helper('form_bas');
+        $this->load->helper(array('form_bas','bootstrap_bas'));
         $this->data['title'] = 'Add Form Users';
+        $this->template->load_css('bootstrap.min.css');
+        $this->template->load_js('jquery.min.js');
+        $this->template->load_js('bootstrap.min.js');
     }
     
     public function index(){
-        
-        
-        $this->template->load('default','users/add',$this->data);
+        $this->template->load_view('default','users/add',$this->data);
     }
     
     public function save(){
@@ -29,9 +30,9 @@ class users extends CI_Controller {
         $this->form_validation->set_rules('Email','Email','required|valid_email');
         
         if($this->form_validation->run()==FALSE){
-            $this->template->load('default','users/add',$this->data);
+            $this->template->load_view('default','users/add',$this->data);
         }else{
-            $this->template->load('default','coba1');
+            $this->template->load_view('default','coba1');
         }
         
     }

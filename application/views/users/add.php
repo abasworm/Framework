@@ -1,3 +1,5 @@
+<?=  bs_headings(3, 'Apa Ya?')?>
+
 <?=form_open('users/save')?>
 
 <?=finput('Username',set_value('Username'))?> <?=form_error('Username');?>
