@@ -33,12 +33,13 @@ if (!function_exists('bs_form_open')) {
     function bs_fopen($action = NULL, $method = NULL, $type = NULL, $modify='') {
         $s = array(
             'action'=>(!is_null($action))?$action:NULL,
-            'method'=>(!is_null($method))?$method:NULL
+            'method'=>(!is_null($method))?$method:NULL,
+            'class' =>(!is_null($type))?($type!='horizontal')?'form-inline':'form-horizontal':NULL
         );
         
-        if(!is_null($type)){
-            $s = $host;
-        }
+        if(!is_null($modify)){
+            $s = array_merge($s,$modify);
+        }           
         return _form_open($s);
     }
 
