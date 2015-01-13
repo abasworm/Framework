@@ -34,8 +34,12 @@ if (!function_exists('bs_form_open')) {
         $s = array(
             'action'=>(!is_null($action))?$action:NULL,
             'method'=>(!is_null($method))?$method:NULL
-            
         );
+        
+        if(!is_null($type)){
+            $s = $host;
+        }
+        return _form_open($s);
     }
 
 }
