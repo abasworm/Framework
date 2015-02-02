@@ -15,7 +15,9 @@ if (!function_exists('conv_array')) {
         if (!is_null($array) || $array != false || $array != '') {
             if (is_array($array)) {
                 foreach ($array as $s => $x) {
-                    $c .= ' ' . $s . '="' . $x . '"';
+                    if(!is_null($x)){
+                        $c .= ' ' . $s . '="' . $x . '"';
+                    }
                 }
             } else {
                 $c = $array;

@@ -6,15 +6,16 @@ if ( ! function_exists('finput'))
 {
     function finput($name,$value='',$extra='')
     {
-        
+        $data = array();
         $e = '';
         if(is_array($extra)){
             foreach($extra as $i=>$x){$e .= ' '.$i.'="'.$x.'"';}
             $extra=$e;
-            
         }
-        $value = ($value=='')?'':'value = "'.$value.'"';
-        return '<input type="text" name="'.$name.'" id="'.$name.'" '.$value.' '.$extra.'>';
+        $data['name']=$name;
+        $data['value'] = ($value=='')?'':'value = "'.$value.'"';
+//        return '<input type="text" name="'.$name.'" id="'.$name.'" '.$value.' '.$extra.'>';
+        return form_input($data);
     }
 }
 

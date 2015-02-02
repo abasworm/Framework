@@ -12,7 +12,7 @@ class users extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->library(array('template','form_validation'));
-        $this->load->helper(array('form_bas','bootstrap_bas'));
+        $this->load->helper(array('form_bas','bootstrap_bas','bootstrap_bas_form'));
         $this->data['title'] = 'Add Form Users';
         $this->template->load_css('bootstrap.min.css');
         $this->template->load_js('jquery.min.js');
